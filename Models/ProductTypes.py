@@ -5,3 +5,4 @@ class ProductTypes(Enum):
     MOTHERBOARD = 2
     GPU = 3
     PROCESSOR_COOLER = 4
+    CASE = 5

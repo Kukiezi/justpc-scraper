@@ -1,8 +1,8 @@
 import psycopg2
 
-hostname = '192.168.99.101'
-username = 'docker'
-password = 'secret'
+hostname = '192.168.99.100'
+username = 'postgres'
+password = 'postgres'
 database = 'justpc'
 
 def openConnection():

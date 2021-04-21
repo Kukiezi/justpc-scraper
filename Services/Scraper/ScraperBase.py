@@ -33,7 +33,6 @@ class ScraperBase(ABC):
                     product = self.scrapeProduct(str(link))
                     if isinstance(product, Product):
                         products.append(product)
-                
 
         logging.info("Scraped total of {0}".format(str(len(products))))
         return products

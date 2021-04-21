@@ -1,11 +1,12 @@
 from .GPUFactory import GPUFactory
-from .XkomConstants import XkomConstants
+from ..XkomConstants import XkomConstants
+from ..XkomBuilder import XkomBuilder
 
 class GPUBuilder():
     def __init__(self, name, specifications, soup, offer):
+        XkomBuilder.__init__(self, soup)
         self.name = name
         self.specifications = specifications
-        self.soup = soup
         self.offer = offer
 
     def setName(self):
@@ -47,9 +48,9 @@ class GPUBuilder():
 
     # TODO same function as in other models. Remodel to reuse from parent
     def getImage(self):
-        image_span = self.soup.find("span", {"class" : "sc-1tblmgq-0 jiiyfe-2 kyrBfL sc-1tblmgq-2 jujzsL"})
+        image_span = self.soup.find("span", {"class" : XkomConstants.PROCESSOR_IMAGE_SPAN.value})
         if image_span is not None:
-            image_src = image_span.find("img", {"class" : "sc-1tblmgq-1 eYVBah"})["src"]
+            image_src = image_span.find("img", {"class" : XkomConstants.PROCESSOR_IMAGE.value})["src"]
             return image_src
         return ""
         

@@ -1,5 +1,5 @@
 from .OfferFactory import OfferFactory
-from .XkomConstants import XkomConstants
+from ..XkomConstants import XkomConstants
 
 class OfferBuilder():
     def __init__(self, shop, link, specifications, soup):
@@ -34,7 +34,7 @@ class OfferBuilder():
 
     def isProductDiscounted(self, soup):
         product_hot_discount = soup.find("div", {"class" : "sc-8c7p9j-3 hRCsfd"})
-        product_discount = soup.find("div", {"class" : "u7xnnm-3 gAOShm"})
+        product_discount = soup.find("span", {"class" : "sc-8c7p9j-3 gBBxGG"})
 
         if product_discount is not None or product_hot_discount is not None:
             return True
@@ -43,7 +43,7 @@ class OfferBuilder():
 
     def scrapeOriginalPrice(self, soup):
         product_hot_discount = soup.find("div", {"class" : "sc-8c7p9j-3 hRCsfd"})
-        product_discount = soup.find("div", {"class" : "u7xnnm-3 gAOShm"})
+        product_discount = soup.find("span", {"class" : "sc-8c7p9j-3 gBBxGG"})
         if product_discount is not None:
             return product_discount.text
         if product_hot_discount is not None:
@@ -52,7 +52,7 @@ class OfferBuilder():
 
     def getProductCurrentPrice(self, soup):
         product_hot_price= soup.find("div", {"class" : "sc-8c7p9j-2 ldCRmd"})
-        product_price = soup.find("div", {"class" : "u7xnnm-4 iVazGO"})
+        product_price = soup.find("div", {"class" : "u7xnnm-4 jFbqvs"})
 
         if product_price is not None:
             return product_price.text

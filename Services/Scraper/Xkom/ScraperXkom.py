@@ -3,8 +3,7 @@ import traceback
 from ..ScraperBase import ScraperBase
 from Models.Processor import Processor
 from .XkomConstants import XkomConstants
-from .ProcessorBuilder import ProcessorBuilder
-from .OfferBuilder import OfferBuilder
+from .Offer.OfferBuilder import OfferBuilder
 from bs4 import BeautifulSoup
 from .ProductFactory import ProductFactory
 
@@ -13,6 +12,8 @@ product_title_classes = [
     "sc-1x6crnh-5 cYILyh",
     "sc-1x6crnh-5 gOwOoL",
     "sc-1bker4h-4 llfiOB",
+    "sc-1bker4h-4 driGYx",
+    "sc-1bker4h-4 fiaogA"
 ]
 
 class ScraperXkom(ScraperBase):
@@ -36,7 +37,7 @@ class ScraperXkom(ScraperBase):
         self.product_type = product_type
 
     def getProductLinksFromPage(self, soup):
-        processors_links = soup.find_all("a", {"class" : "sc-1h16fat-0 dEoadv"})
+        processors_links = soup.find_all("a", {"class" : XkomConstants.PRODUCTS_LINKS.value})
         links = []
         for link in processors_links:
             links.append(link["href"])
@@ -44,12 +45,12 @@ class ScraperXkom(ScraperBase):
 
     def getProductData(self, soup, url):
             product_title = self.getProductTitle(soup)
-            specifications = soup.find_all("div", {"class" : "sc-bwzfXH sc-13p5mv-0 cwztyD sc-htpNat gSgMmi"})
+            specifications = soup.find_all("div", {"class" : XkomConstants.PRODUCT_SPECIFICATIONS_ROW.value})
             product_specifications = dict()
 
             for tag in specifications:
                 try:
-                    product_specifications[self._getVisibleTagText(tag)] = tag.find("div", {"class" : "sc-13p5mv-3 gngmZS"}).text
+                    product_specifications[self._getVisibleTagText(tag)] = tag.find("div", {"class" : XkomConstants.PRODUCT_SPECIFICATIONS_VALUE_TEXT.value}).text
                 except Exception as e:
                     logging.error("Products specification text value was not visible")
             
@@ -112,7 +113,7 @@ class ScraperXkom(ScraperBase):
         return False
 
     def _getVisibleTagText(self, tag):
-        if tag.find("div", {"class" : "sc-13p5mv-1 jSuwtZ"}) is not None:
-            return tag.find("div", {"class" : "sc-13p5mv-1 jSuwtZ"}).text
+        if tag.find("div", {"class" : "sc-13p5mv-1 hnuwXU"}) is not None:
+            return tag.find("div", {"class" : "sc-13p5mv-1 hnuwXU"}).text
 
-        return tag.find("div", {"class" : "sc-13p5mv-1 bRoFvv"}).text
+        return tag.find("div", {"class" : "sc-13p5mv-1 jVhSOR"}).text

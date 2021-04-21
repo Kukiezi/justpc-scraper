@@ -1,13 +1,14 @@
 from .ProcessorFactory import ProcessorFactory
-from .XkomConstants import XkomConstants
+from ..XkomConstants import XkomConstants
+from ..XkomBuilder import XkomBuilder
 
-class ProcessorBuilder():
+class ProcessorBuilder(XkomBuilder):
     def __init__(self, name, specifications, soup, offer):
+        XkomBuilder.__init__(self, soup)
         self.name = name
         self.specifications = specifications
-        self.soup = soup
         self.offer = offer
-
+        
     def setName(self):
         return self.name
     
@@ -40,7 +41,6 @@ class ProcessorBuilder():
         integrated_graphic = self.specifications.get(XkomConstants.PROCESSOR_INTEGRATED_GRAPHIC.value)
         return integrated_graphic
 
-
     def setCacheMemory(self):
         cache_memory = self.specifications.get(XkomConstants.PROCESSOR_CACHE_MEMORY.value)
         return cache_memory
@@ -55,13 +55,6 @@ class ProcessorBuilder():
 
     def build(self):
         return ProcessorFactory.createProcessor(self)
-
-    def getImage(self):
-        image_span = self.soup.find("span", {"class" : "sc-1tblmgq-0 jiiyfe-2 kyrBfL sc-1tblmgq-2 jujzsL"})
-        if image_span is not None:
-            image_src = image_span.find("img", {"class" : "sc-1tblmgq-1 eYVBah"})["src"]
-            return image_src
-        return ""
 
     # this method retrieves base clock GHz from string which is HTML
     # base_clock = processor_base[0:index_to_finish_substring + 3], + 3 happens to assure GHz is also returned as it has 3 characters

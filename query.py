@@ -45,3 +45,12 @@ def inserCPUCooler(cpu_cooler):
     cur.execute( f"INSERT INTO offer VALUES (DEFAULT, '{str(cpu_cooler.offer.shop)}', '{str(cpu_cooler.offer.link)}', '{int(cpu_cooler.offer.original_price)}', '{int(cpu_cooler.offer.current_price)}', NULL, NULL, NULL, '{int(id_of_new_row)}')")
     connection.commit()
     closeConnection(connection)
+
+def insertCase(case):
+    connection = openConnection()
+    cur = connection.cursor()
+    cur.execute( f"INSERT INTO pc_case VALUES (DEFAULT, '{str(case.name)}', '{str(case.cabinet_type)}', '{str(case.side_panel)}', '{str(case.image)}') RETURNING id;")
+    id_of_new_row = cur.fetchone()[0]
+    cur.execute( f"INSERT INTO offer VALUES (DEFAULT, '{str(case.offer.shop)}', '{str(case.offer.link)}', '{int(case.offer.original_price)}', '{int(case.offer.current_price)}', NULL, NULL, NULL, NULL, '{int(id_of_new_row)}')")
+    connection.commit()
+    closeConnection(connection)

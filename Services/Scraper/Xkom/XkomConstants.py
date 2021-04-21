@@ -27,6 +27,18 @@ class XkomConstants(Enum):
     PROCESSOR_COOLER_NOISE = "Maksymalny poziom hałasu"
     PROCESSOR_COOLER_COMPATIBILITY = "Kompatybilność"
 
-    PRODUCTS_LISTS_HTML_CLASS = "sc-9bei5y-5 dVLiRL"
-    PRODUCT_PREV_NEXT_PAGE_CLASS = "sc-1xy3kzh-7 istDmk sc-1h16fat-0 dEoadv"
-    PRODUCT_NEXT_PAGE_SPAN = "sc-1xy3kzh-2 ksIamt"
+    CASE_CABINET_TYPE = "Typ obudowy"
+    CASE_SIDE_PANEL = "Panel boczny"
+    
+
+    PRODUCTS_LINKS = "sc-1h16fat-0 sc-1yu46qn-9 elgoMT"
+    PRODUCTS_LISTS_HTML_CLASS = "sc-9bei5y-0 ckmXUd"
+    PRODUCT_PREV_NEXT_PAGE_CLASS = "sc-1xy3kzh-9 jqhYXA sc-1h16fat-0 irSQpN"
+    PRODUCT_NEXT_PAGE_SPAN = "sc-1xy3kzh-3 jsovxw"
+    PRODUCT_SPECIFICATIONS_ROW = "sc-htpNat sc-13p5mv-0 dqxkPb sc-bxivhb qjKbk"
+    PRODUCT_SPECIFICATIONS_NAME_NORMAL_TEXT = "sc-13p5mv-1 hnuwXU"
+    PRODUCT_SPECIFICATIONS_NAME_UNDERLINE_TEXT = "sc-13p5mv-1 jVhSOR"
+    PRODUCT_SPECIFICATIONS_VALUE_TEXT = "sc-13p5mv-3 gATTUl"
+
+    PROCESSOR_IMAGE_SPAN = "sc-1tblmgq-0 jiiyfe-2 ldEQXA sc-1tblmgq-3 fHoITM"
+    PROCESSOR_IMAGE = "sc-1tblmgq-1 hiJJtI"

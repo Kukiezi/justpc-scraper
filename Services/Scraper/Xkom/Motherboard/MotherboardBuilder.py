@@ -1,11 +1,12 @@
 from .MotherboardFactory import MotherboardFactory
-from .XkomConstants import XkomConstants
+from ..XkomConstants import XkomConstants
+from ..XkomBuilder import XkomBuilder
 
 class MotherboardBuilder():
     def __init__(self, name, specifications, soup, offer):
+        XkomBuilder.__init__(self, soup)
         self.name = name
         self.specifications = specifications
-        self.soup = soup
         self.offer = offer
 
     def setName(self):
@@ -54,15 +55,6 @@ class MotherboardBuilder():
 
     def build(self):
         return MotherboardFactory.createMotherboard(self)
-
-    # TODO same function as in other models. Remodel to reuse from parent
-    def getImage(self):
-        image_span = self.soup.find("span", {"class" : "sc-1tblmgq-0 jiiyfe-2 kyrBfL sc-1tblmgq-2 jujzsL"})
-        if image_span is not None:
-            image_src = image_span.find("img", {"class" : "sc-1tblmgq-1 eYVBah"})["src"]
-            return image_src
-        return ""
-        
 
     def getProductOriginalPrice(self, soup):
         if self.isProductDiscounted(soup) is not False:
